@@ -1,0 +1,12 @@
+{ 
+  "wayfinders": [ {
+    "id": "24b9855e-20a8-404b-b62c-6ba5e851f3c3",
+    "title": "Floor 1",
+    "wayfinderId": "c760b623-9490-476a-bad1-c8739100e27b"
+  }, {
+    "id": "6f970576-3994-4d25-8d76-346ac67840ae",
+    "title": "Floor 2",
+    "wayfinderId": "c760b623-9490-476a-bad1-c8739100e27b"
+  } ],
+  "totalRecords": 2
+}
