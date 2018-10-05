@@ -23,10 +23,24 @@ public class WayfinderAPI implements WayfindersResource {
 
 	private final PostgresClient pgClient;
 	private static final String[] ALL_FIELDS = { "*" };
-	private static final String QUEUERS_TABLE = "wayfinders";
+	private static final String WAYFINDERS_TABLE = "wayfinders";
 
 	public WayfinderAPI(Vertx vertx, String tenantId) {
 		this.pgClient = PostgresClient.getInstance(vertx, tenantId);
 		this.pgClient.setIdField("id");
+	}
+
+	@Override
+	public void getWayfinders(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders,
+			Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) throws Exception {
+		logger.info("GET wayfinders not implemented...");
+		throw new Exception("getWayfinders not implemented.");
+	}
+
+	@Override
+	public void postWayfinders(String lang, Wayfinder entity, Map<String, String> okapiHeaders,
+			Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) throws Exception {
+		logger.info("POST wayfinders not implemented...");
+		throw new Exception("postWayfinders not implemented.");
 	}
 }
