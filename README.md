@@ -126,7 +126,7 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
         http://localhost:9130/_/proxy/tenants/diku/modules
     curl http://localhost:9130/_/proxy/tenants/diku/modules
     ```
-1. Request `courses` through `mod-wayfinder`.
+1. Request `wayfinders` through `mod-wayfinder`.
     ```bash
     # LOGIN and get x-okapi-token and use it for the next requests
     curl -i -w '\n' -X POST -H 'X-Okapi-Tenant: diku' \
