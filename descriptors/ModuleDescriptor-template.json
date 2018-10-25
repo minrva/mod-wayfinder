@@ -6,7 +6,7 @@
     "version": "1.0",
     "handlers": [ {
       "methods": [ "GET", "POST" ],
-      "pathPattern": "/wayfinders"
+      "pathPattern": "/shelves"
     } ]
   }, {
     "id": "_tenant",

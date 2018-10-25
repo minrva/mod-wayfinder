@@ -134,10 +134,10 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
         -d '{"username": "diku_admin", "password": "admin"}' \
         http://localhost:9130/authn/login
 
-    # GET wayfinders
+    # GET shelves
     curl -i -w '\n' -X GET -H 'X-Okapi-Tenant: diku' \
-        -H 'X-Okapi-Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjFhZDczN2IwLWQ4NDctMTFlNi1iZjI2LWNlYzBjOTMyY2UwMSIsInRlbmFudCI6ImRpa3UifQ.X85EJEnIVD4ah6qANKcZ_u72oQjsSXVNRj16xk0pmhS98nLtRye7LAiSLr1jDsEueyO925eem2BHm2B8tnUlOA' \
-        http://localhost:9130/wayfinders
+        -H 'X-Okapi-Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjFhZDczN2IwLWQ4NDctMTFlNi1iZjI2LWNlYzBjOTMyY2UwMSIsInRlbmFudCI6ImRpa3UifQ.UE6FcYIkTDXfo9aUmEvcJ_UFqmXgshylfty8iPJi9zljP5bSnER43BR0PZtdWmdX9UZ-WqftnNTHqqSz2tsXIg' \
+        http://localhost:9130/shelves
     ```
 1. *Optional*: Deploy Stripes Platform
     ```bash
@@ -160,7 +160,7 @@ Note: Launch descriptor has a path relative to the directory that `java -jar oka
 1. Unregister mod-wayfinder from Okapi gateway.
     ```bash
     # undeploy mod-wayfinder
-    curl -w '\n' -X DELETE  -D - http://localhost:9130/_/discovery/modules/mod-wayfinder-1.0.0/10.0.2.15-9143
+    curl -w '\n' -X DELETE  -D - http://localhost:9130/_/discovery/modules/mod-wayfinder-1.0.0/10.0.2.15-9144
     # disable mod-wayfinder for diku
     curl -w '\n' -X DELETE  -D - http://localhost:9130/_/proxy/tenants/diku/modules/mod-wayfinder-1.0.0
     # unregister mod-wayfinder

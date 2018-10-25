@@ -1,15 +1,15 @@
 #%RAML 0.8
-title: Wayfinders
+title: Shelves
 version: v1.0.0
 baseUri: http://github.com/org/folio/mod-wayfinder
 
 documentation:
-  - title: mod-wayfinder Wayfinders API
-    content: This documents the API calls that can be made to query and manage wayfinders.
+  - title: mod-wayfinder Shelves API
+    content: This documents the API calls that can be made to query and manage shelves.
 
 schemas: 
-  - wayfinder: !include schemas/wayfinder.json
-  - wayfinderCollection: !include schemas/wayfinderCollection.json
+  - shelf: !include schemas/shelf.json
+  - shelfCollection: !include schemas/shelfCollection.json
   - errors: !include raml-util/schemas/errors.schema
   - error: !include raml-util/schemas/error.schema
   - parameters: !include raml-util/schemas/parameters.schema
@@ -25,18 +25,18 @@ traits:
 resourceTypes:
   - collection: !include raml-util/rtypes/collection.raml
 
-/wayfinders:
+/shelves:
   type:
     collection:
-      exampleCollection: !include examples/wayfinderCollection.json
-      exampleItem: !include examples/wayfinder.json
-      schemaCollection: wayfinderCollection
-      schemaItem: wayfinder
+      exampleCollection: !include examples/shelfCollection.json
+      exampleItem: !include examples/shelf.json
+      schemaCollection: shelfCollection
+      schemaItem: shelf
   get:
     is: [
-      searchable: {description: "with valid searchable fields", example: "wayfinderId=c760b623-9490-476a-bad1-c8739100e27b"},
+      searchable: {description: "with valid searchable fields", example: "id=c760b623-9490-476a-bad1-c8739100e27b"},
       pageable
     ]
-    description: Returns a list of wayfinders.
+    description: Returns a list of shelves.
   post:
-    description: Posts a wayfinder.
+    description: Posts a shelf.

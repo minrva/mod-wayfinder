@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Shelf Schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "lowerBound": {
+      "type": "string"
+    },
+    "upperBound": {
+      "type": "string"
+    },
+    "mapTitle": {
+      "type": "string"
+    },
+    "mapUri": {
+      "type": "string"
+    },
+    "x": {
+      "type": "integer"
+    },
+    "y": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "label",
+    "lowerBound",
+    "upperBound",
+    "mapTitle",
+    "mapUri",
+    "x",
+    "y"
+  ]
+}

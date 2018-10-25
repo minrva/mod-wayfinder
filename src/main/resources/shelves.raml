@@ -1,0 +1,42 @@
+#%RAML 0.8
+title: Shelves
+version: v1.0.0
+baseUri: http://github.com/org/folio/mod-wayfinder
+
+documentation:
+  - title: mod-wayfinder Shelves API
+    content: This documents the API calls that can be made to query and manage shelves.
+
+schemas: 
+  - shelf: !include schemas/shelf.json
+  - shelfCollection: !include schemas/shelfCollection.json
+  - errors: !include raml-util/schemas/errors.schema
+  - error: !include raml-util/schemas/error.schema
+  - parameters: !include raml-util/schemas/parameters.schema
+
+traits:
+  - secured: !include raml-util/traits/auth.raml
+  - orderable: !include raml-util/traits/orderable.raml
+  - pageable: !include raml-util/traits/pageable.raml
+  - searchable: !include raml-util/traits/searchable.raml
+  - language: !include raml-util/traits/language.raml
+  - validate: !include raml-util/traits/validation.raml
+
+resourceTypes:
+  - collection: !include raml-util/rtypes/collection.raml
+
+/shelves:
+  type:
+    collection:
+      exampleCollection: !include examples/shelfCollection.json
+      exampleItem: !include examples/shelf.json
+      schemaCollection: shelfCollection
+      schemaItem: shelf
+  get:
+    is: [
+      searchable: {description: "with valid searchable fields", example: "id=c760b623-9490-476a-bad1-c8739100e27b"},
+      pageable
+    ]
+    description: Returns a list of shelves.
+  post:
+    description: Posts a shelf.

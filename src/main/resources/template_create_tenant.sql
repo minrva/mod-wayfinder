@@ -7,7 +7,7 @@ CREATE SCHEMA myuniversity_mymodule AUTHORIZATION myuniversity_mymodule;
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- declare tables -- 
-CREATE TABLE IF NOT EXISTS myuniversity_mymodule.wayfinders (
+CREATE TABLE IF NOT EXISTS myuniversity_mymodule.shelves (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(), 
     jsonb JSONB NOT NULL
 );

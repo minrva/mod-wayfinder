@@ -2,12 +2,12 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
     "properties": {
-        "wayfinders": {
+        "shelves": {
             "type": "array",
-            "id": "wayfinderData",
+            "id": "shelfData",
             "items": {
                 "type": "object",
-                "$ref": "wayfinder"
+                "$ref": "shelf"
             }
         },
         "totalRecords": {
@@ -15,7 +15,7 @@
         }
     },
     "required": [
-        "wayfinders",
+        "shelves",
         "totalRecords"
     ]
 }
