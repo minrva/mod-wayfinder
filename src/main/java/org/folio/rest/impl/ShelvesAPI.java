@@ -48,14 +48,14 @@ public class ShelvesAPI implements ShelvesResource {
 	@Override
 	public void postShelves(String lang, Shelf entity, Map<String, String> okapiHeaders,
 			Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) throws Exception {
-				logger.info("POST shelves...");
-				PgTransaction<Shelf> pgTransaction = new PgTransaction<Shelf>(entity);
-				Future.succeededFuture(pgTransaction)
-					.compose(this::startTx)
-					.compose(this::saveShelves)
-					.compose(this::endTx)
-					.compose(this::parsePostResults)
-					.setHandler(asyncResultHandler);	
+		logger.info("POST shelves...");
+		PgTransaction<Shelf> pgTransaction = new PgTransaction<Shelf>(entity);
+		Future.succeededFuture(pgTransaction)
+			.compose(this::startTx)
+			.compose(this::saveShelves)
+			.compose(this::endTx)
+			.compose(this::parsePostResults)
+			.setHandler(asyncResultHandler);	
 	}
 
 	private Future<PgTransaction<Shelf>> startTx(PgTransaction<Shelf> tx) {

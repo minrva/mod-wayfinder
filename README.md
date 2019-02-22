@@ -68,21 +68,21 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
     ```bash
     cd ~/Desktop/folio
     java \
-          -Dstorage=postgres \
-          -Dpostgres_host=localhost \
-          -Dpostgres_port=5432 \
-          -Dpostgres_user=okapi \
-          -Dpostgres_password=okapi25 \
-          -Dpostgres_database=okapi \
-          -Dhost=10.0.2.15 \
-          -Dport=9130 \
-          -Dport_start=9131 \
-          -Dport_end=9151 \
-          -DdockerURL=http://localhost:4243 \
-          -Dokapiurl=http://10.0.2.15:9130 \
-          -jar bl/okapi/okapi-core/target/okapi-core-fat.jar dev
+        -Dstorage=postgres \
+        -Dpostgres_host=localhost \
+        -Dpostgres_port=5432 \
+        -Dpostgres_user=okapi \
+        -Dpostgres_password=okapi25 \
+        -Dpostgres_database=okapi \
+        -Dhost=10.0.2.15 \
+        -Dport=9130 \
+        -Dport_start=9131 \
+        -Dport_end=9661 \
+        -DdockerURL=http://localhost:4243 \
+        -Dokapiurl=http://10.0.2.15:9130 \
+        -jar bl/okapi/okapi-core/target/okapi-core-fat.jar dev
     ```
-1. Deploy Okapi modules (necessary for permissions-module-4.0.4).
+1. *Only Once*: Deploy Okapi modules.
     ```bash
     source activate folio
     python ~/Desktop/folio/bl/dev-ops/deploy_modules.py
@@ -100,7 +100,7 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
         http://localhost:9130/_/proxy/modules
     curl http://localhost:9130/_/proxy/modules
     ```
-1. **Either** deploy `mod-wayfinder` as a **Docker container**.
+1. *Only Once*: **Either** deploy `mod-wayfinder` as a **Docker container**.
     ```bash
     curl -w '\n' -D - -s \
         -X POST \
@@ -109,7 +109,7 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
         http://localhost:9130/_/discovery/modules
     curl -i -w '\n' -X GET http://localhost:9130/_/discovery/modules
     ```
-1. **Or** deploy `mod-wayfinder` as a **Java application**.
+1. *Only Once*: **Or** deploy `mod-wayfinder` as a **Java application**.
     ```bash
     curl -w '\n' -D - -s \
         -X POST \
@@ -136,12 +136,12 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
 
     # GET shelves
     curl -i -w '\n' -X GET -H 'X-Okapi-Tenant: diku' \
-        -H 'X-Okapi-Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjFhZDczN2IwLWQ4NDctMTFlNi1iZjI2LWNlYzBjOTMyY2UwMSIsInRlbmFudCI6ImRpa3UifQ.UE6FcYIkTDXfo9aUmEvcJ_UFqmXgshylfty8iPJi9zljP5bSnER43BR0PZtdWmdX9UZ-WqftnNTHqqSz2tsXIg' \
+        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDc5NzQ1OSwidGVuYW50IjoiZGlrdSJ9.2Io425nrgGNzISBPEKPJKVqnCQRxXdxVDSpdCd8GUz0' \
         http://localhost:9130/shelves
     ```
 1. *Optional*: Deploy Stripes Platform
     ```bash
-    cd ~/Desktop/folio/ui/stripes-demo-platform
+    cd ~/Desktop/folio/ui/platform-complete
     yarn start
     ```
 1. Tear-down
