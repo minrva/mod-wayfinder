@@ -46,6 +46,7 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
 ### cURL Usage
 
 1. Create tenant-module databasae (i.e. enable module).
+
     ```bash
     curl -i -w '\n' -X POST -H 'Content-type: application/json' \
         -H 'X-Okapi-Token: dummyJwt.eyJzdWIiOiJzZWIiLCJ0ZW5hbnQiOm51bGx9.sig' \
@@ -57,6 +58,7 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
 ### Full: Postgresql Server, All Modules
 
 1. Set-up environment (see 0-installation docs).
+
     ```bash
     sudo ifconfig lo0 alias 10.0.2.15
     brew services restart postgresql@9.6
@@ -64,7 +66,9 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
     # wait for Docker to start before running next cmd
     docker run -d -v /var/run/docker.sock:/var/run/docker.sock -p 127.0.0.1:4243:4243 bobrik/socat TCP-LISTEN:4243,fork UNIX-CONNECT:/var/run/docker.sock
     ```
+
 1. Deploy Okapi
+
     ```bash
     cd ~/Desktop/folio
     java \
@@ -82,17 +86,23 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
         -Dokapiurl=http://10.0.2.15:9130 \
         -jar bl/okapi/okapi-core/target/okapi-core-fat.jar dev
     ```
+
 1. *Only Once*: Deploy Okapi modules.
+
     ```bash
     source activate folio
     python ~/Desktop/folio/bl/dev-ops/deploy_modules.py
     source deactivate folio
     ```
+
 1. Change to mod-wayfinder directory.
+
     ```bash
     cd ~/Desktop/folio/bl/mod-wayfinder
     ```
+
 1. *Only Once*: Register `mod-wayfinder`.
+
     ```bash
     curl -w '\n' -X POST -D -   \
         -H "Content-type: application/json"   \
@@ -100,7 +110,9 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
         http://localhost:9130/_/proxy/modules
     curl http://localhost:9130/_/proxy/modules
     ```
+
 1. *Only Once*: **Either** deploy `mod-wayfinder` as a **Docker container**.
+
     ```bash
     curl -w '\n' -D - -s \
         -X POST \
@@ -109,7 +121,9 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
         http://localhost:9130/_/discovery/modules
     curl -i -w '\n' -X GET http://localhost:9130/_/discovery/modules
     ```
+
 1. *Only Once*: **Or** deploy `mod-wayfinder` as a **Java application**.
+
     ```bash
     curl -w '\n' -D - -s \
         -X POST \
@@ -118,7 +132,9 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
         http://localhost:9130/_/discovery/modules
     curl -i -w '\n' -X GET http://localhost:9130/_/discovery/modules
     ```
+
 1. *Only Once*: Enable `mod-wayfinder` for `diku` tenant.
+
     ```bash
     curl -w '\n' -X POST -D -   \
         -H "Content-type: application/json"   \
@@ -126,7 +142,9 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
         http://localhost:9130/_/proxy/tenants/diku/modules
     curl http://localhost:9130/_/proxy/tenants/diku/modules
     ```
+
 1. Request `wayfinders` through `mod-wayfinder`.
+
     ```bash
     # LOGIN and get x-okapi-token and use it for the next requests
     curl -i -w '\n' -X POST -H 'X-Okapi-Tenant: diku' \
@@ -136,16 +154,31 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
 
     # GET shelves
     curl -i -w '\n' -X GET -H 'X-Okapi-Tenant: diku' \
-        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDc5NzQ1OSwidGVuYW50IjoiZGlrdSJ9.2Io425nrgGNzISBPEKPJKVqnCQRxXdxVDSpdCd8GUz0' \
+        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDg3ODcxOCwidGVuYW50IjoiZGlrdSJ9.Di7HFcohKL0lwSSJ02-QBlZobXciG7psIm9vjlk7H4c' \
         http://localhost:9130/shelves
+
+    # POST shelves
+    curl -i -w '\n' -X POST -H 'Content-type: application/json' \
+    -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDg3ODcxOCwidGVuYW50IjoiZGlrdSJ9.Di7HFcohKL0lwSSJ02-QBlZobXciG7psIm9vjlk7H4c' \
+    -H 'X-Okapi-Tenant: diku' \
+    -d @ramls/examples/shelf1.json http://localhost:9130/shelves
+
+    curl -i -w '\n' -X POST -H 'Content-type: application/json' \
+    -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDg3ODcxOCwidGVuYW50IjoiZGlrdSJ9.Di7HFcohKL0lwSSJ02-QBlZobXciG7psIm9vjlk7H4c' \
+    -H 'X-Okapi-Tenant: diku' \
+    -d @ramls/examples/shelf2.json http://localhost:9130/shelves
     ```
+
 1. *Optional*: Deploy Stripes Platform
+
     ```bash
     cd ~/Desktop/folio/ui/platform-complete
     yarn start
     ```
+
 1. Tear-down
     `ctrl + c` out of okapi and stripes.
+
     ```bash
     docker kill $(docker ps -q)
     docker container prune
@@ -158,6 +191,7 @@ Note: Launch descriptor has a path relative to the directory that `java -jar oka
 ## Reference
 
 1. Unregister mod-wayfinder from Okapi gateway.
+
     ```bash
     # undeploy mod-wayfinder
     curl -w '\n' -X DELETE  -D - http://localhost:9130/_/discovery/modules/mod-wayfinder-1.0.0/10.0.2.15-9144
@@ -166,7 +200,9 @@ Note: Launch descriptor has a path relative to the directory that `java -jar oka
     # unregister mod-wayfinder
     curl -w '\n' -X DELETE  -D - http://localhost:9130/_/proxy/modules/mod-wayfinder-1.0.0
     ```
+
 1. List registered modules.
+
     ```bash
     # list deployed modules
     curl -i -w '\n' -X GET http://localhost:9130/_/discovery/modules
