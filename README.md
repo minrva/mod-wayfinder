@@ -154,17 +154,17 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
 
     # GET shelves
     curl -i -w '\n' -X GET -H 'X-Okapi-Tenant: diku' \
-        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDg3ODcxOCwidGVuYW50IjoiZGlrdSJ9.Di7HFcohKL0lwSSJ02-QBlZobXciG7psIm9vjlk7H4c' \
+        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDk3MDQwMiwidGVuYW50IjoiZGlrdSJ9.aundQ-DeuSDnYB4K45yNmW30yVLh4PafYRLC3YQLylQ' \
         http://localhost:9130/shelves
 
-    # POST shelves
+    # POST shelves (shelf1.json and shelf2.json)
     curl -i -w '\n' -X POST -H 'Content-type: application/json' \
-    -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDg3ODcxOCwidGVuYW50IjoiZGlrdSJ9.Di7HFcohKL0lwSSJ02-QBlZobXciG7psIm9vjlk7H4c' \
+    -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDk3MDQwMiwidGVuYW50IjoiZGlrdSJ9.aundQ-DeuSDnYB4K45yNmW30yVLh4PafYRLC3YQLylQ' \
     -H 'X-Okapi-Tenant: diku' \
     -d @ramls/examples/shelf1.json http://localhost:9130/shelves
 
     curl -i -w '\n' -X POST -H 'Content-type: application/json' \
-    -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDg3ODcxOCwidGVuYW50IjoiZGlrdSJ9.Di7HFcohKL0lwSSJ02-QBlZobXciG7psIm9vjlk7H4c' \
+    -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDk3MDQwMiwidGVuYW50IjoiZGlrdSJ9.aundQ-DeuSDnYB4K45yNmW30yVLh4PafYRLC3YQLylQ' \
     -H 'X-Okapi-Tenant: diku' \
     -d @ramls/examples/shelf2.json http://localhost:9130/shelves
     ```
