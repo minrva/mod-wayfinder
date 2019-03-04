@@ -154,19 +154,28 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
 
     # GET shelves
     curl -i -w '\n' -X GET -H 'X-Okapi-Tenant: diku' \
-        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDk3MDQwMiwidGVuYW50IjoiZGlrdSJ9.aundQ-DeuSDnYB4K45yNmW30yVLh4PafYRLC3YQLylQ' \
+        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MTQyMDA4OCwidGVuYW50IjoiZGlrdSJ9.azRvMvNNDEWr1qKZ2eaEFLicRcOBblO41SB1j5JKyh8' \
         http://localhost:9130/shelves
+
+    # GET shelf that contains book's Library of Congress call number
+    # query = (lowerBound <= "TX773 .E334 2004" and upperBound >= "TX773 .E334 2004")
+    # result should return shelf 52 similar to,
+    # https://minrva.library.illinois.edu/index.html#loc/uiu_undergrad/apple/uiu_5999841/Book
+    curl -i -w '\n' -X GET \
+        -H 'Content-type: application/json' \
+        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MTQyMDA4OCwidGVuYW50IjoiZGlrdSJ9.azRvMvNNDEWr1qKZ2eaEFLicRcOBblO41SB1j5JKyh8' \
+        -H 'X-Okapi-Tenant: diku' 'http://localhost:9130/shelves?query=%28lowerBound%20%3C%3D%20%22TX773%20.E334%202004%22%20and%20upperBound%20%3E%3D%20%22TX773%20.E334%202004%22%29'
 
     # POST shelves (shelf1.json and shelf2.json)
     curl -i -w '\n' -X POST -H 'Content-type: application/json' \
-    -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDk3MDQwMiwidGVuYW50IjoiZGlrdSJ9.aundQ-DeuSDnYB4K45yNmW30yVLh4PafYRLC3YQLylQ' \
-    -H 'X-Okapi-Tenant: diku' \
-    -d @ramls/examples/shelf1.json http://localhost:9130/shelves
+        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDk3MDQwMiwidGVuYW50IjoiZGlrdSJ9.aundQ-DeuSDnYB4K45yNmW30yVLh4PafYRLC3YQLylQ' \
+        -H 'X-Okapi-Tenant: diku' \
+        -d @ramls/examples/shelf1.json http://localhost:9130/shelves
 
     curl -i -w '\n' -X POST -H 'Content-type: application/json' \
-    -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDk3MDQwMiwidGVuYW50IjoiZGlrdSJ9.aundQ-DeuSDnYB4K45yNmW30yVLh4PafYRLC3YQLylQ' \
-    -H 'X-Okapi-Tenant: diku' \
-    -d @ramls/examples/shelf2.json http://localhost:9130/shelves
+        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MDk3MDQwMiwidGVuYW50IjoiZGlrdSJ9.aundQ-DeuSDnYB4K45yNmW30yVLh4PafYRLC3YQLylQ' \
+        -H 'X-Okapi-Tenant: diku' \
+        -d @ramls/examples/shelf2.json http://localhost:9130/shelves
     ```
 
 1. *Optional*: Deploy Stripes Platform
