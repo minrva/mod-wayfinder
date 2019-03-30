@@ -154,7 +154,7 @@ docker run -t -i -p 8081:8081 mod-wayfinder embed_postgres=true
 
     # GET shelves
     curl -i -w '\n' -X GET -H 'X-Okapi-Tenant: diku' \
-        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MTQyMDA4OCwidGVuYW50IjoiZGlrdSJ9.azRvMvNNDEWr1qKZ2eaEFLicRcOBblO41SB1j5JKyh8' \
+        -H 'X-Okapi-Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWt1X2FkbWluIiwidXNlcl9pZCI6IjM4YmNlODAyLTA3MGItNWExNC1iMGNlLTQzMjgwZjVmNjQyMiIsImlhdCI6MTU1MzkxNDkyMywidGVuYW50IjoiZGlrdSJ9.GqwGR6ML8nNOrxlQXbBgMpHS8xqz4OgncIIJdOqUfuk' \
         http://localhost:9130/shelves
 
     # GET shelf that contains book's Library of Congress call number
