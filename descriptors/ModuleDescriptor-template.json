@@ -1,0 +1,20 @@
+{
+  "id": "${artifactId}-${version}",
+  "name": "Wayfinder Module",
+  "provides": [ {
+    "id": "wayfinder",
+    "version": "1.0",
+    "handlers": [ {
+      "methods": [ "GET", "POST" ],
+      "pathPattern": "/shelves"
+    } ]
+  }, {
+    "id": "_tenant",
+    "version": "1.0",
+    "interfaceType" : "system",
+    "handlers" : [ {
+      "methods" : [ "POST", "DELETE" ],
+      "pathPattern" : "/_/tenant"
+    } ]
+  } ]
+}

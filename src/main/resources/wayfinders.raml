@@ -1,0 +1,42 @@
+#%RAML 0.8
+title: Wayfinders
+version: v1.0.0
+baseUri: http://github.com/org/folio/mod-wayfinder
+
+documentation:
+  - title: mod-wayfinder Wayfinders API
+    content: This documents the API calls that can be made to query and manage wayfinders.
+
+schemas: 
+  - wayfinder: !include schemas/wayfinder.json
+  - wayfinderCollection: !include schemas/wayfinderCollection.json
+  - errors: !include raml-util/schemas/errors.schema
+  - error: !include raml-util/schemas/error.schema
+  - parameters: !include raml-util/schemas/parameters.schema
+
+traits:
+  - secured: !include raml-util/traits/auth.raml
+  - orderable: !include raml-util/traits/orderable.raml
+  - pageable: !include raml-util/traits/pageable.raml
+  - searchable: !include raml-util/traits/searchable.raml
+  - language: !include raml-util/traits/language.raml
+  - validate: !include raml-util/traits/validation.raml
+
+resourceTypes:
+  - collection: !include raml-util/rtypes/collection.raml
+
+/wayfinders:
+  type:
+    collection:
+      exampleCollection: !include examples/wayfinderCollection.json
+      exampleItem: !include examples/wayfinder.json
+      schemaCollection: wayfinderCollection
+      schemaItem: wayfinder
+  get:
+    is: [
+      searchable: {description: "with valid searchable fields", example: "wayfinderId=c760b623-9490-476a-bad1-c8739100e27b"},
+      pageable
+    ]
+    description: Returns a list of wayfinders.
+  post:
+    description: Posts a wayfinder.
