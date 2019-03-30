@@ -1,11 +1,11 @@
 {
-  "id": "6f970576-3994-4d25-8d76-346ac67840ae",
-  "permanentLocationId": "fcd64ce1-6995-48f0-840e-89ffa2288371",
-  "label": "2",
-  "lowerBound": "E885 .N5",
-  "upperBound": "F541 .M9",
-  "mapTitle": "Annex",
-  "mapUri": "http://minrva.library.illinois.edu/api/wayfinder/map/2_undergrad_2.png?x=459&y=130",
-  "x": 459,
-  "y": 130
+  "id" : "5e91aa9e-a7a8-4f91-9697-d3a321ec8d1c",
+  "permanentLocationId" : "fcd64ce1-6995-48f0-840e-89ffa2288371",
+  "label" : "2",
+  "lowerBound" : "AC8 .B4",
+  "upperBound" : "B5234 .F4",
+  "mapTitle" : "Main",
+  "mapUri" : "https://lh3.googleusercontent.com/QzygfOsk1EZVe3e6EqCxDyZ_TXMnDf_Lm85gs9Vheti7gVXK6sJwaqDQCpuaxQXZDuxXkSH3xOdmrMyxCtXnkfTjWt_sOSNLh2mixrzvl6L-bn384DqXBUAn4Fpuign8gIO4HBcWdw=w2400",
+  "x" : 459,
+  "y" : 408
 }
